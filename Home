@@ -1,0 +1,69 @@
+import {loc} from 'backend/aModule';
+import wixWindow from 'wix-window';
+import wixLocation from 'wix-location';
+$w.onReady(function () {
+	
+	
+});
+
+
+
+async function user_location(){
+await wixWindow.getCurrentGeolocation()
+.then((loc) =>{
+	let latitude = loc.coords.latitude;
+	let longitude = loc.coords.longitude;
+	
+	$w("#googleMaps2").location = {
+		"latitude": latitude,
+		"longitude": longitude,
+		"description": "I am here"
+	}
+	$w("#text2").text = 
+		"I am here" + "\n"
+		+"Latitude: " + latitude + "\n"
+		+"Longitude: " + longitude;
+		
+		
+	
+})
+.catch((error) => {
+	let errornot = error;
+	console.log(errornot)
+})
+}
+
+
+export function button1_click(event, $w) {
+	
+	
+	//wixWindow.getCurrentGeolocation()
+		//.then( (obj) => {
+		//let timestamp = obj.timestamp;                  // 1495027186984
+		//let latitude = obj.coords.latitude;             // 32.0971036
+		//let longitude = obj.coords.longitude;           // 34.774391099999995
+		//let altitude = obj.coords.altitude;             // null
+		//let accuracy = obj.coords.accuracy;             // 29
+		//let altAccuracy = obj.coords.altitudeAccuracy;  // null
+		//let heading = obj.coords.heading;               // null
+		//let speed = obj.coords.speed;
+		
+		//const url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + latitude + '%' + longitude + '&radius=1500&type=restaurant&opennow&key=AIzaSyCZyRdSMpAU1vv-cp2B9MNJPkN8TvlGWsE'
+		//console.log("Url: " + url);	
+			//return fetch(url, {method: 'get'})
+           //.then(response => response.json());
+		                 // null
+	//} )
+	//.catch( (error) => {
+		//let errorMsg = error;
+	
+	//});
+	// loc()
+		// $w('#text2').text = 		"City = " + loc().url.city.name + "\n"
+									// +"Latitude = " + loc().url.location.latitude + "\n" 
+									// +"Longitude = " + loc().location.longitude;
+
+	
+	user_location()
+	
+}
